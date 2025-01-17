@@ -65,6 +65,74 @@
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Charts: Earnings and Unemployment</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div style="display: flex; justify-content: space-around; align-items: flex-start; margin-top: 20px;">
+        <!-- Median Annual Earnings Chart -->
+        <div id="chart1" style="width: 45%; height: 500px;"></div>
+
+        <!-- Unemployment Rate Chart -->
+        <div id="chart2" style="width: 45%; height: 500px;"></div>
+    </div>
+
+    <script>
+        // Data for Median Annual Earnings
+        var earningsData = {
+            x: [107875, 86850, 74650, 49150],
+            y: ["Doctoral or professional degree", "Master's degree", "Bachelor's degree", "High school diploma or less"],
+            type: 'bar',
+            orientation: 'h',
+            marker: {
+                color: '#FF7F7F'
+            },
+            text: ["$107,875", "$86,850", "$74,650", "$49,150"],
+            textposition: 'auto'
+        };
+
+        var earningsLayout = {
+            title: "Median Annual Earnings ($)",
+            xaxis: { visible: false },
+            yaxis: { automargin: true },
+            margin: { l: 150, r: 50, t: 50, b: 50 },
+            paper_bgcolor: 'white'
+        };
+
+        Plotly.newPlot('chart1', [earningsData], earningsLayout);
+
+        // Data for Unemployment Rate
+        var unemploymentData = {
+            x: [1.4, 2.0, 2.2, 3.3],
+            y: ["Doctoral or professional degree", "Master's degree", "Bachelor's degree", "High school diploma or less"],
+            type: 'bar',
+            orientation: 'h',
+            marker: {
+                color: '#FFB266'
+            },
+            text: ["1.4%", "2.0%", "2.2%", "3.3%"],
+            textposition: 'auto'
+        };
+
+        var unemploymentLayout = {
+            title: "Unemployment Rate (%)",
+            xaxis: { visible: false },
+            yaxis: { visible: false },
+            margin: { l: 150, r: 50, t: 50, b: 50 },
+            paper_bgcolor: 'white'
+        };
+
+        Plotly.newPlot('chart2', [unemploymentData], unemploymentLayout);
+    </script>
+</body>
+</html>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
