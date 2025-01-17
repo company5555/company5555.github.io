@@ -36,13 +36,17 @@
                 "Government"
             ],  // Sector names
             "textinfo": "percent",
-            "hovertemplate": "Sector: %{label}<br>Wages: %{customdata[0]:,}<br>Percentage: %{percent}",
+            "hovertemplate": "Sector: %{label}<br>Wages: %{customdata[1]:,}<br>Percentage: %{percent}",
+            "customdata": [
+                [55689, 72886, 75770, 634697, 1083951, 659293, 448489, 465671, 911932, 187898, 
+                 379764, 206505, 1377762, 135172, 477843, 1732777]  // Original wages for each sector
+            ],
             "marker": {
                 "colors": [
-                    "#F2A3D9", "#F7B8D8", "#F1C1E4", "#FBB2D9", "#F49AC5", "#D895B2",
-                    "#F2B1DC", "#E45B96", "#EE669E", "#F199A8", "#F6A2B9", "#F0749D", 
-                    "#F7A9B7", "#F84B8F", "#F6C6D5", "#F642A9"
-                ]  // Color palette
+                    "#FFEDA0", "#FED976", "#FEB24C", "#FD8D3C", "#F03B20", "#BD0026",
+                    "#800026", "#FF6600", "#FF8C00", "#FFB732", "#FFBA5C", "#FF9440", 
+                    "#FF7043", "#FF3D2F", "#E60019", "#990000"
+                ]  // YlOrRd color palette, excluding white tones
             }
         }];
 
@@ -68,6 +72,7 @@
     </script>
 </body>
 </html>
+
 
 
 
