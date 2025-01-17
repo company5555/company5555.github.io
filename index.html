@@ -3,6 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sector Wages Pie Chart</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Sector Wages Pie Chart</h1>
+    <div id="pie-chart"></div>
+    
+    <script>
+        var data = [{
+            "type": "pie",
+            "values": [/* normalized wage values here */],
+            "labels": [/* sector names here */],
+            "textinfo": "percent",
+            "hovertemplate": "Sector: %{label}<br>Wages: %{customdata[0]:,}<br>Percentage: %{percent}",
+            "marker": {
+                "colors": [/* color palette here */]
+            }
+        }];
+
+        var layout = {
+            "title": "",
+            "legend": {
+                "title": "Sectors",
+                "orientation": "v",
+                "x": 1,
+                "y": 0.5,
+                "xanchor": "left",
+                "yanchor": "middle"
+            },
+            "margin": {
+                "t": 10,
+                "b": 10,
+                "l": 10,
+                "r": 150
+            }
+        };
+
+        Plotly.newPlot('pie-chart', data, layout);
+    </script>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sector Predictions 2024-2033</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
