@@ -13,12 +13,36 @@
     <script>
         var data = [{
             "type": "pie",
-            "values": [/* normalized wage values here */],
-            "labels": [/* sector names here */],
+            "values": [
+                0.026, 0.034, 0.035, 0.299, 0.520, 0.305, 0.211, 0.219, 0.436, 0.087, 
+                0.176, 0.095, 0.562, 0.062, 0.224, 0.634  // Normalized values of the wages
+            ],
+            "labels": [
+                "Agriculture, forestry, fishing, and hunting",
+                "Mining",
+                "Utilities",
+                "Construction",
+                "Manufacturing",
+                "Retail trade",
+                "Transportation and warehousing",
+                "Information",
+                "Finance and insurance",
+                "Real estate and rental and leasing",
+                "Management of companies and enterprises",
+                "Educational services",
+                "Health care and social assistance",
+                "Arts, entertainment, and recreation",
+                "Accommodation and food services",
+                "Government"
+            ],  // Sector names
             "textinfo": "percent",
             "hovertemplate": "Sector: %{label}<br>Wages: %{customdata[0]:,}<br>Percentage: %{percent}",
             "marker": {
-                "colors": [/* color palette here */]
+                "colors": [
+                    "#F2A3D9", "#F7B8D8", "#F1C1E4", "#FBB2D9", "#F49AC5", "#D895B2",
+                    "#F2B1DC", "#E45B96", "#EE669E", "#F199A8", "#F6A2B9", "#F0749D", 
+                    "#F7A9B7", "#F84B8F", "#F6C6D5", "#F642A9"
+                ]  // Color palette
             }
         }];
 
@@ -44,6 +68,7 @@
     </script>
 </body>
 </html>
+
 
 
 
