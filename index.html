@@ -3,73 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stacked Bar Chart</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
-<body>
-    <div id="chart" style="width: 100%; max-width: 1200px; height: 600px; margin: auto;"></div>
-    <script>
-        var data = [
-            {
-                x: ["Accommodation and food services", "Agriculture, forestry, fishing, and hunting", "Arts, entertainment, and recreation", "Construction", "Educational services", "Finance and insurance", "Government and public administration", "Health care and social assistance", "Information", "Management of companies and enterprises", "Manufacturing", "Mining", "Real estate and rental and leasing", "Retail trade", "Transportation and warehousing", "Utilities"],
-                y: [0, 29.63, 36.17, 13.16, 34.38, 51.61, 17.14, 18.03, 69.70, 100.00, 13.99, 15.79, 25.00, 25.00, 3.77, 0.00],
-                name: "Bachelor's degree",
-                type: "bar",
-                marker: { color: "#FFAF00" }
-            },
-            {
-                x: ["Accommodation and food services", "Agriculture, forestry, fishing, and hunting", "Arts, entertainment, and recreation", "Construction", "Educational services", "Finance and insurance", "Government and public administration", "Health care and social assistance", "Information", "Management of companies and enterprises", "Manufacturing", "Mining", "Real estate and rental and leasing", "Retail trade", "Transportation and warehousing", "Utilities"],
-                y: [0, 0, 0, 0, 38.54, 0, 11.43, 26.23, 0, 0, 0, 0, 0, 0, 0, 0],
-                name: "Doctoral or professional degree",
-                type: "bar",
-                marker: { color: "#F46920" }
-            },
-            {
-                x: ["Accommodation and food services", "Agriculture, forestry, fishing, and hunting", "Arts, entertainment, and recreation", "Construction", "Educational services", "Finance and insurance", "Government and public administration", "Health care and social assistance", "Information", "Management of companies and enterprises", "Manufacturing", "Mining", "Real estate and rental and leasing", "Retail trade", "Transportation and warehousing", "Utilities"],
-                y: [100, 70.37, 63.83, 85.53, 9.38, 45.16, 71.43, 39.34, 27.27, 0, 86.01, 84.21, 75.00, 75.00, 96.23, 100.00],
-                name: "High school diploma or less",
-                type: "bar",
-                marker: { color: "#F53255" }
-            },
-            {
-                x: ["Accommodation and food services", "Agriculture, forestry, fishing, and hunting", "Arts, entertainment, and recreation", "Construction", "Educational services", "Finance and insurance", "Government and public administration", "Health care and social assistance", "Information", "Management of companies and enterprises", "Manufacturing", "Mining", "Real estate and rental and leasing", "Retail trade", "Transportation and warehousing", "Utilities"],
-                y: [0, 0, 0, 1.32, 17.71, 3.23, 0, 16.39, 3.03, 0, 0, 0, 0, 0, 0, 0],
-                name: "Master's degree",
-                type: "bar",
-                marker: { color: "#F857C1" }
-            }
-        ];
-
-        var layout = {
-            title: "Percentage Distribution of Educational Attainment Levels by Industry",
-            barmode: "stack",
-            xaxis: {
-                title: "Industry",
-                tickangle: -45
-            },
-            yaxis: {
-                title: "Percentage (%)"
-            },
-            legend: {
-                title: {
-                    text: "Educational Attainment"
-                }
-            }
-        };
-
-        Plotly.newPlot("chart", data, layout);
-    </script>
-</body>
-</html>
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bar Charts: Earnings and Unemployment</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
@@ -131,6 +64,89 @@
     </script>
 </body>
 </html>
+
+
+
+<style>
+    .container {
+        margin-bottom: 50px; /* Her bölüm arasına 50px boşluk ekler */
+    }
+</style>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacked Bar Chart</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="chart" style="width: 100%; max-width: 1200px; height: 600px; margin: auto;"></div>
+    <script>
+        var data = [
+            {
+                x: ["Accommodation and food services", "Agriculture, forestry, fishing, and hunting", "Arts, entertainment, and recreation", "Construction", "Educational services", "Finance and insurance", "Government and public administration", "Health care and social assistance", "Information", "Management of companies and enterprises", "Manufacturing", "Mining", "Real estate and rental and leasing", "Retail trade", "Transportation and warehousing", "Utilities"],
+                y: [0, 29.63, 36.17, 13.16, 34.38, 51.61, 17.14, 18.03, 69.70, 100.00, 13.99, 15.79, 25.00, 25.00, 3.77, 0.00],
+                name: "Bachelor's degree",
+                type: "bar",
+                marker: { color: "#FFAF00" }
+            },
+            {
+                x: ["Accommodation and food services", "Agriculture, forestry, fishing, and hunting", "Arts, entertainment, and recreation", "Construction", "Educational services", "Finance and insurance", "Government and public administration", "Health care and social assistance", "Information", "Management of companies and enterprises", "Manufacturing", "Mining", "Real estate and rental and leasing", "Retail trade", "Transportation and warehousing", "Utilities"],
+                y: [0, 0, 0, 0, 38.54, 0, 11.43, 26.23, 0, 0, 0, 0, 0, 0, 0, 0],
+                name: "Doctoral or professional degree",
+                type: "bar",
+                marker: { color: "#F46920" }
+            },
+            {
+                x: ["Accommodation and food services", "Agriculture, forestry, fishing, and hunting", "Arts, entertainment, and recreation", "Construction", "Educational services", "Finance and insurance", "Government and public administration", "Health care and social assistance", "Information", "Management of companies and enterprises", "Manufacturing", "Mining", "Real estate and rental and leasing", "Retail trade", "Transportation and warehousing", "Utilities"],
+                y: [100, 70.37, 63.83, 85.53, 9.38, 45.16, 71.43, 39.34, 27.27, 0, 86.01, 84.21, 75.00, 75.00, 96.23, 100.00],
+                name: "High school diploma or less",
+                type: "bar",
+                marker: { color: "#F53255" }
+            },
+            {
+                x: ["Accommodation and food services", "Agriculture, forestry, fishing, and hunting", "Arts, entertainment, and recreation", "Construction", "Educational services", "Finance and insurance", "Government and public administration", "Health care and social assistance", "Information", "Management of companies and enterprises", "Manufacturing", "Mining", "Real estate and rental and leasing", "Retail trade", "Transportation and warehousing", "Utilities"],
+                y: [0, 0, 0, 1.32, 17.71, 3.23, 0, 16.39, 3.03, 0, 0, 0, 0, 0, 0, 0],
+                name: "Master's degree",
+                type: "bar",
+                marker: { color: "#F857C1" }
+            }
+        ];
+
+        var layout = {
+            title: "Percentage Distribution of Educational Attainment Levels by Industry",
+            barmode: "stack",
+            xaxis: {
+                title: "Industry",
+                tickangle: -45
+            },
+            yaxis: {
+                title: "Percentage (%)"
+            },
+            legend: {
+                title: {
+                    text: "Educational Attainment"
+                }
+            }
+        };
+
+        Plotly.newPlot("chart", data, layout);
+    </script>
+</body>
+</html>
+
+
+
+<style>
+    .container {
+        margin-bottom: 50px; /* Her bölüm arasına 50px boşluk ekler */
+    }
+</style>
+
 
 
 
@@ -210,7 +226,11 @@
 
 
 
-
+<style>
+    .container {
+        margin-bottom: 50px; /* Her bölüm arasına 50px boşluk ekler */
+    }
+</style>
 
 
 
