@@ -1,11 +1,69 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=h1, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sektör Tahminleri</title>
+  <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #sector-selector {
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-    <h1>IE 421</h1>
-    <p> Welcome to our project Webpage</p>
+  <h1>Sektör Tahminleri (2023-2033)</h1>
+  <select id="sector-selector" multiple size="5">
+    <option value="Health care and social assistance">Health care and social assistance</option>
+    <option value="Government">Government</option>
+    <option value="Manufacturing">Manufacturing</option>
+    <option value="Agriculture, forestry, fishing, and hunting">Agriculture</option>
+    <option value="Mining">Mining</option>
+    <!-- Diğer sektörler için benzer seçenekler ekleyin -->
+  </select>
+  <div id="chart" style="width: 100%; height: 600px;"></div>
+
+  <script>
+    const rawData = [
+      {"sector": "Agriculture, forestry, fishing, and hunting", "2023": 55689, "2024": 53359, "2025": 54579, "2026": 55799, "2027": 57019, "2028": 58239, "2029": 59458, "2030": 60678, "2031": 61898, "2032": 63118, "2033": 64338},
+      {"sector": "Health care and social assistance", "2023": 1377762, "2024": 1271409, "2025": 1308362, "2026": 1345315, "2027": 1382269, "2028": 1419222, "2029": 1456175, "2030": 1493128, "2031": 1530081, "2032": 1567034, "2033": 1603988},
+      {"sector": "Government", "2023": 1732777, "2024": 1652224, "2025": 1687945, "2026": 1723667, "2027": 1759389, "2028": 1795110, "2029": 1830832, "2030": 1866553, "2031": 1902275, "2032": 1937997, "2033": 1973718},
+      {"sector": "Manufacturing", "2023": 1083951, "2024": 955455, "2025": 968174, "2026": 980894, "2027": 993613, "2028": 1006332, "2029": 1019052, "2030": 1031771, "2031": 1044491, "2032": 1057210, "2033": 1069930},
+      // Daha fazla sektör ekleyin...
+    ];
+
+    const years = ["2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033"];
+
+    function updateChart(selectedSectors) {
+      const traces = selectedSectors.map(sector => {
+        const sectorData = rawData.find(data => data.sector === sector);
+        return {
+          x: years,
+          y: years.map(year => sectorData[year]),
+          mode: 'lines+markers',
+          name: sector
+        };
+      });
+
+      Plotly.newPlot('chart', traces, {
+        title: 'Sektör Tahminleri',
+        xaxis: { title: 'Yıl' },
+        yaxis: { title: 'Değer (birim)', tickformat: ',d' },
+        legend: { orientation: 'h' }
+      });
+    }
+
+    document.getElementById('sector-selector').addEventListener('change', (event) => {
+      const selectedOptions = Array.from(event.target.selectedOptions).map(option => option.value);
+      updateChart(selectedOptions);
+    });
+
+    // Varsayılan olarak ilk sektörleri göster
+    updateChart(["Health care and social assistance", "Government", "Manufacturing"]);
+  </script>
 </body>
 </html>
