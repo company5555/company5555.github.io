@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 
 # Dosyayı yükle
-file_path = 'DataTable2.xlsx'
+file_path = 'Table_DataSet_3'
 data = pd.ExcelFile(file_path).parse('Sheet1')
 
 # Her sektörün normalize edilmiş maaş oranını hesapla
