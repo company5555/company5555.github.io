@@ -3,96 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sector Wages Pie Chart</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
-<body>
-    <h1>Sector Wages Pie Chart</h1>
-    <div id="pie-chart"></div>
-    
-    <script>
-        var data = [{
-            "type": "pie",
-            "values": [
-                0.026, 0.034, 0.035, 0.299, 0.520, 0.305, 0.211, 0.219, 0.436, 0.087, 
-                0.176, 0.095, 0.562, 0.062, 0.224, 0.634  // Normalized values of the wages
-            ],
-            "labels": [
-                "Agriculture, forestry, fishing, and hunting",
-                "Mining",
-                "Utilities",
-                "Construction",
-                "Manufacturing",
-                "Retail trade",
-                "Transportation and warehousing",
-                "Information",
-                "Finance and insurance",
-                "Real estate and rental and leasing",
-                "Management of companies and enterprises",
-                "Educational services",
-                "Health care and social assistance",
-                "Arts, entertainment, and recreation",
-                "Accommodation and food services",
-                "Government"
-            ],  // Sector names
-            "textinfo": "percent",
-            "hovertemplate": "Sector: %{label}<br>Wages: %{customdata[1]:,}<br>Percentage: %{percent}",
-            "customdata": [
-                [55689, 72886, 75770, 634697, 1083951, 659293, 448489, 465671, 911932, 187898, 
-                 379764, 206505, 1377762, 135172, 477843, 1732777]  // Original wages for each sector
-            ],
-            "marker": {
-                "colors": [
-                    "#FFEDA0", "#FED976", "#FEB24C", "#FD8D3C", "#F03B20", "#BD0026",
-                    "#800026", "#FF6600", "#FF8C00", "#FFB732", "#FFBA5C", "#FF9440", 
-                    "#FF7043", "#FF3D2F", "#E60019", "#990000"
-                ]  // YlOrRd color palette, excluding white tones
-            }
-        }];
-
-        var layout = {
-            "title": "",
-            "legend": {
-                "title": "Sectors",
-                "orientation": "v",
-                "x": 1,
-                "y": 0.5,
-                "xanchor": "left",
-                "yanchor": "middle"
-            },
-            "margin": {
-                "t": 10,
-                "b": 10,
-                "l": 10,
-                "r": 150
-            }
-        };
-
-        Plotly.newPlot('pie-chart', data, layout);
-    </script>
-</body>
-</html>
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sector Predictions 2024-2033</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f4f4f9; /* Arka plan rengi */
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
+            background-color: white; /* Konteyner arka plan rengi */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+            border-radius: 8px;
+            text-align: center; /* Yazıları ortala */
         }
         .select-container {
             margin-bottom: 20px;
@@ -112,125 +42,125 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>Sector Predictions 2024-2033</h1>
-    <div class="select-container">
-        <label for="sector-select">Select a sector:</label>
-        <select id="sector-select" multiple>
-            <option value="all">All Sectors</option>
-            <option value="Agriculture, forestry, fishing, and hunting">Agriculture, forestry, fishing, and hunting</option>
-            <option value="Mining">Mining</option>
-            <option value="Utilities">Utilities</option>
-            <option value="Construction">Construction</option>
-            <option value="Manufacturing">Manufacturing</option>
-            <option value="Retail trade">Retail trade</option>
-            <option value="Transportation and warehousing">Transportation and warehousing</option>
-            <option value="Information">Information</option>
-            <option value="Finance and insurance">Finance and insurance</option>
-            <option value="Real estate and rental and leasing">Real estate and rental and leasing</option>
-            <option value="Management of companies and enterprises">Management of companies and enterprises</option>
-            <option value="Educational services">Educational services</option>
-            <option value="Health care and social assistance">Health care and social assistance</option>
-            <option value="Arts, entertainment, and recreation">Arts, entertainment, and recreation</option>
-            <option value="Accommodation and food services">Accommodation and food services</option>
-            <option value="Government">Government</option>
-        </select>
+    <div class="container">
+        <h1>Sector Predictions 2024-2033</h1>
+        <div class="select-container">
+            <label for="sector-select">Select a sector:</label>
+            <select id="sector-select" multiple>
+                <option value="all">All Sectors</option>
+                <option value="Agriculture, forestry, fishing, and hunting">Agriculture, forestry, fishing, and hunting</option>
+                <option value="Mining">Mining</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Construction">Construction</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Retail trade">Retail trade</option>
+                <option value="Transportation and warehousing">Transportation and warehousing</option>
+                <option value="Information">Information</option>
+                <option value="Finance and insurance">Finance and insurance</option>
+                <option value="Real estate and rental and leasing">Real estate and rental and leasing</option>
+                <option value="Management of companies and enterprises">Management of companies and enterprises</option>
+                <option value="Educational services">Educational services</option>
+                <option value="Health care and social assistance">Health care and social assistance</option>
+                <option value="Arts, entertainment, and recreation">Arts, entertainment, and recreation</option>
+                <option value="Accommodation and food services">Accommodation and food services</option>
+                <option value="Government">Government</option>
+            </select>
+        </div>
+        <canvas id="sector-chart" width="1000" height="500"></canvas>
     </div>
-    <canvas id="sector-chart" width="1000" height="500"></canvas>
-</div>
 
-<script>
-const sectorData = {
-    "Agriculture, forestry, fishing, and hunting": [53359, 54579, 55799, 57019, 58239, 59458, 60678, 61898, 63118, 64338],
-    "Mining": [82052, 83988, 85925, 87861, 89798, 91734, 93671, 95607, 97544, 99480],
-    "Utilities": [71410, 72884, 74358, 75832, 77306, 78781, 80255, 81729, 83203, 84677],
-    "Construction": [544486, 557612, 570737, 583863, 596989, 610114, 623240, 636366, 649491, 662617],
-    "Manufacturing": [955455, 968174, 980894, 993613, 1006332, 1019052, 1031771, 1044491, 1057210, 1069930],
-    "Retail trade": [612271, 624474, 636677, 648880, 661082, 673285, 685488, 697691, 709893, 722096],
-    "Transportation and warehousing": [376611, 386722, 396833, 406945, 417056, 427167, 437279, 447390, 457501, 467613],
-    "Information": [395393, 405420, 415448, 425475, 435502, 445529, 455556, 465583, 475610, 485637],
-    "Finance and insurance": [852483, 874607, 896730, 918853, 940976, 963099, 985223, 1007346, 1029469, 1051592],
-    "Real estate and rental and leasing": [166855, 171309, 175762, 180215, 184669, 189122, 193575, 198029, 202482, 206935],
-    "Management of companies and enterprises": [359203, 369895, 380587, 391279, 401971, 412663, 423355, 434047, 444739, 455431],
-    "Educational services": [200831, 206628, 212425, 218221, 224018, 229815, 235611, 241408, 247204, 253001],
-    "Health care and social assistance": [1271409, 1308362, 1345315, 1382269, 1419222, 1456175, 1493128, 1530081, 1567034, 1603988],
-    "Arts, entertainment, and recreation": [117927, 121023, 124118, 127214, 130310, 133406, 136501, 139597, 142693, 145789],
-    "Accommodation and food services": [409186, 420773, 432359, 443945, 455531, 467117, 478703, 490289, 501875, 513461],
-    "Government": [1652224, 1687945, 1723667, 1759389, 1795110, 1830832, 1866553, 1902275, 1937997, 1973718]
-};
-
-const years = [2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033];
-
-const ctx = document.getElementById('sector-chart').getContext('2d');
-let chart;
-
-const createGradient = (ctx, colorStart, colorEnd) => {
-    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, colorStart);
-    gradient.addColorStop(1, colorEnd);
-    return gradient;
-};
-
-const renderChart = (selectedSectors) => {
-    if (chart) chart.destroy();
-
-    const datasets = selectedSectors.map((sector, index) => {
-        const gradient = createGradient(ctx, `hsl(${index * 30}, 70%, 60%)`, `hsl(${index * 30}, 70%, 30%)`);
-        return {
-            label: sector,
-            data: sectorData[sector],
-            borderColor: gradient,
-            backgroundColor: gradient,
-            fill: false,
-            tension: 0.4,
-            borderWidth: 2
+    <script>
+        const sectorData = {
+            "Agriculture, forestry, fishing, and hunting": [53359, 54579, 55799, 57019, 58239, 59458, 60678, 61898, 63118, 64338],
+            "Mining": [82052, 83988, 85925, 87861, 89798, 91734, 93671, 95607, 97544, 99480],
+            "Utilities": [71410, 72884, 74358, 75832, 77306, 78781, 80255, 81729, 83203, 84677],
+            "Construction": [544486, 557612, 570737, 583863, 596989, 610114, 623240, 636366, 649491, 662617],
+            "Manufacturing": [955455, 968174, 980894, 993613, 1006332, 1019052, 1031771, 1044491, 1057210, 1069930],
+            "Retail trade": [612271, 624474, 636677, 648880, 661082, 673285, 685488, 697691, 709893, 722096],
+            "Transportation and warehousing": [376611, 386722, 396833, 406945, 417056, 427167, 437279, 447390, 457501, 467613],
+            "Information": [395393, 405420, 415448, 425475, 435502, 445529, 455556, 465583, 475610, 485637],
+            "Finance and insurance": [852483, 874607, 896730, 918853, 940976, 963099, 985223, 1007346, 1029469, 1051592],
+            "Real estate and rental and leasing": [166855, 171309, 175762, 180215, 184669, 189122, 193575, 198029, 202482, 206935],
+            "Management of companies and enterprises": [359203, 369895, 380587, 391279, 401971, 412663, 423355, 434047, 444739, 455431],
+            "Educational services": [200831, 206628, 212425, 218221, 224018, 229815, 235611, 241408, 247204, 253001],
+            "Health care and social assistance": [1271409, 1308362, 1345315, 1382269, 1419222, 1456175, 1493128, 1530081, 1567034, 1603988],
+            "Arts, entertainment, and recreation": [117927, 121023, 124118, 127214, 130310, 133406, 136501, 139597, 142693, 145789],
+            "Accommodation and food services": [409186, 420773, 432359, 443945, 455531, 467117, 478703, 490289, 501875, 513461],
+            "Government": [1652224, 1687945, 1723667, 1759389, 1795110, 1830832, 1866553, 1902275, 1937997, 1973718]
         };
-    });
 
-    chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: years,
-            datasets: datasets
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { position: 'top' },
-                tooltip: {
-                    callbacks: {
-                        label: (tooltipItem) => {
-                            return `${tooltipItem.dataset.label}: ${tooltipItem.raw.toLocaleString()}`;
+        const years = [2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033];
+
+        const ctx = document.getElementById('sector-chart').getContext('2d');
+        let chart;
+
+        const createGradient = (ctx, colorStart, colorEnd) => {
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, colorStart);
+            gradient.addColorStop(1, colorEnd);
+            return gradient;
+        };
+
+        const renderChart = (selectedSectors) => {
+            if (chart) chart.destroy();
+
+            const datasets = selectedSectors.map((sector, index) => {
+                const gradient = createGradient(ctx, `hsl(${index * 30}, 70%, 60%)`, `hsl(${index * 30}, 70%, 30%)`);
+                return {
+                    label: sector,
+                    data: sectorData[sector],
+                    borderColor: gradient,
+                    backgroundColor: gradient,
+                    fill: false,
+                    tension: 0.4,
+                    borderWidth: 2
+                };
+            });
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top' },
+                        tooltip: {
+                            callbacks: {
+                                label: (tooltipItem) => {
+                                    return `${tooltipItem.dataset.label}: ${tooltipItem.raw.toLocaleString()}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { title: { display: false } },
+                        y: {
+                            title: { display: false },
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 100000
+                            },
+                            grid: {
+                                borderDash: [5, 5]
+                            }
                         }
                     }
                 }
-            },
-            scales: {
-                x: { title: { display: false } },
-                y: {
-                    title: { display: false },
-                    beginAtZero: true,
-                    ticks: {
-                        stepSize: 100000
-                    },
-                    grid: {
-                        borderDash: [5, 5]
-                    }
-                }
-            }
-        }
-    });
-};
+            });
+        };
 
-const sectorSelect = document.getElementById('sector-select');
-sectorSelect.addEventListener('change', () => {
-    const selectedOptions = Array.from(sectorSelect.selectedOptions).map(option => option.value);
-    const selectedSectors = selectedOptions.includes('all') ? Object.keys(sectorData) : selectedOptions;
-    renderChart(selectedSectors);
-});
+        const sectorSelect = document.getElementById('sector-select');
+        sectorSelect.addEventListener('change', () => {
+            const selectedOptions = Array.from(sectorSelect.selectedOptions).map(option => option.value);
+            const selectedSectors = selectedOptions.includes('all') ? Object.keys(sectorData) : selectedOptions;
+            renderChart(selectedSectors);
+        });
 
-// Initialize chart with all sectors
-renderChart(Object.keys(sectorData));
-</script>
+        // Initialize chart with all sectors
+        renderChart(Object.keys(sectorData));
+    </script>
 </body>
 </html>
