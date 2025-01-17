@@ -1,69 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sektör Tahminleri</title>
-  <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    #sector-selector {
-      margin-bottom: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sector Predictions 2023-2033</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .select-container {
+            margin-bottom: 20px;
+        }
+        select {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        canvas {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Sektör Tahminleri (2023-2033)</h1>
-  <select id="sector-selector" multiple size="5">
-    <option value="Health care and social assistance">Health care and social assistance</option>
-    <option value="Government">Government</option>
-    <option value="Manufacturing">Manufacturing</option>
-    <option value="Agriculture, forestry, fishing, and hunting">Agriculture</option>
-    <option value="Mining">Mining</option>
-    <!-- Diğer sektörler için benzer seçenekler ekleyin -->
-  </select>
-  <div id="chart" style="width: 100%; height: 600px;"></div>
+<div class="container">
+    <h1>Sector Predictions 2023-2033</h1>
+    <div class="select-container">
+        <label for="sector-select">Select a sector:</label>
+        <select id="sector-select" multiple>
+            <option value="all">All Sectors</option>
+            <option value="Agriculture, forestry, fishing, and hunting">Agriculture, forestry, fishing, and hunting</option>
+            <option value="Mining">Mining</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Construction">Construction</option>
+            <option value="Manufacturing">Manufacturing</option>
+            <option value="Retail trade">Retail trade</option>
+            <option value="Transportation and warehousing">Transportation and warehousing</option>
+            <option value="Information">Information</option>
+            <option value="Finance and insurance">Finance and insurance</option>
+            <option value="Real estate and rental and leasing">Real estate and rental and leasing</option>
+            <option value="Management of companies and enterprises">Management of companies and enterprises</option>
+            <option value="Educational services">Educational services</option>
+            <option value="Health care and social assistance">Health care and social assistance</option>
+            <option value="Arts, entertainment, and recreation">Arts, entertainment, and recreation</option>
+            <option value="Accommodation and food services">Accommodation and food services</option>
+            <option value="Government">Government</option>
+        </select>
+    </div>
+    <canvas id="sector-chart" width="1000" height="500"></canvas>
+</div>
 
-  <script>
-    const rawData = [
-      {"sector": "Agriculture, forestry, fishing, and hunting", "2023": 55689, "2024": 53359, "2025": 54579, "2026": 55799, "2027": 57019, "2028": 58239, "2029": 59458, "2030": 60678, "2031": 61898, "2032": 63118, "2033": 64338},
-      {"sector": "Health care and social assistance", "2023": 1377762, "2024": 1271409, "2025": 1308362, "2026": 1345315, "2027": 1382269, "2028": 1419222, "2029": 1456175, "2030": 1493128, "2031": 1530081, "2032": 1567034, "2033": 1603988},
-      {"sector": "Government", "2023": 1732777, "2024": 1652224, "2025": 1687945, "2026": 1723667, "2027": 1759389, "2028": 1795110, "2029": 1830832, "2030": 1866553, "2031": 1902275, "2032": 1937997, "2033": 1973718},
-      {"sector": "Manufacturing", "2023": 1083951, "2024": 955455, "2025": 968174, "2026": 980894, "2027": 993613, "2028": 1006332, "2029": 1019052, "2030": 1031771, "2031": 1044491, "2032": 1057210, "2033": 1069930},
-      // Daha fazla sektör ekleyin...
-    ];
+<script>
+const sectorData = {
+    "Agriculture, forestry, fishing, and hunting": [55689, 53359, 54579, 55799, 57019, 58239, 59458, 60678, 61898, 63118, 64338],
+    "Mining": [72886, 82052, 83988, 85925, 87861, 89798, 91734, 93671, 95607, 97544, 99480],
+    "Utilities": [75770, 71410, 72884, 74358, 75832, 77306, 78781, 80255, 81729, 83203, 84677],
+    "Construction": [634697, 544486, 557612, 570737, 583863, 596989, 610114, 623240, 636366, 649491, 662617],
+    "Manufacturing": [1083951, 955455, 968174, 980894, 993613, 1006332, 1019052, 1031771, 1044491, 1057210, 1069930],
+    "Retail trade": [659293, 612271, 624474, 636677, 648880, 661082, 673285, 685488, 697691, 709893, 722096],
+    "Transportation and warehousing": [448489, 376611, 386722, 396833, 406945, 417056, 427167, 437279, 447390, 457501, 467613],
+    "Information": [465671, 395393, 405420, 415448, 425475, 435502, 445529, 455556, 465583, 475610, 485637],
+    "Finance and insurance": [911932, 852483, 874607, 896730, 918853, 940976, 963099, 985223, 1007346, 1029469, 1051592],
+    "Real estate and rental and leasing": [187898, 166855, 171309, 175762, 180215, 184669, 189122, 193575, 198029, 202482, 206935],
+    "Management of companies and enterprises": [379764, 359203, 369895, 380587, 391279, 401971, 412663, 423355, 434047, 444739, 455431],
+    "Educational services": [206505, 200831, 206628, 212425, 218221, 224018, 229815, 235611, 241408, 247204, 253001],
+    "Health care and social assistance": [1377762, 1271409, 1308362, 1345315, 1382269, 1419222, 1456175, 1493128, 1530081, 1567034, 1603988],
+    "Arts, entertainment, and recreation": [135172, 117927, 121023, 124118, 127214, 130310, 133406, 136501, 139597, 142693, 145789],
+    "Accommodation and food services": [477843, 409186, 420773, 432359, 443945, 455531, 467117, 478703, 490289, 501875, 513461],
+    "Government": [1732777, 1652224, 1687945, 1723667, 1759389, 1795110, 1830832, 1866553, 1902275, 1937997, 1973718]
+};
 
-    const years = ["2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033"];
+const years = [2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033];
 
-    function updateChart(selectedSectors) {
-      const traces = selectedSectors.map(sector => {
-        const sectorData = rawData.find(data => data.sector === sector);
+const ctx = document.getElementById('sector-chart').getContext('2d');
+let chart;
+
+const renderChart = (selectedSectors) => {
+    if (chart) chart.destroy();
+
+    const datasets = selectedSectors.map((sector, index) => {
         return {
-          x: years,
-          y: years.map(year => sectorData[year]),
-          mode: 'lines+markers',
-          name: sector
+            label: sector,
+            data: sectorData[sector],
+            borderColor: `hsl(${index * 30}, 70%, 50%)`,
+            fill: false,
+            tension: 0.4
         };
-      });
-
-      Plotly.newPlot('chart', traces, {
-        title: 'Sektör Tahminleri',
-        xaxis: { title: 'Yıl' },
-        yaxis: { title: 'Değer (birim)', tickformat: ',d' },
-        legend: { orientation: 'h' }
-      });
-    }
-
-    document.getElementById('sector-selector').addEventListener('change', (event) => {
-      const selectedOptions = Array.from(event.target.selectedOptions).map(option => option.value);
-      updateChart(selectedOptions);
     });
 
-    // Varsayılan olarak ilk sektörleri göster
-    updateChart(["Health care and social assistance", "Government", "Manufacturing"]);
-  </script>
+    chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                tooltip: {
+                    callbacks: {
+                        label: (tooltipItem) => `${tooltipItem.raw.toLocaleString()}`
+                    }
+                }
+            },
+            scales: {
+                x: { title: { display: false } },
+                y: { title: { display: false } }
+            }
+        }
+    });
+};
+
+const sectorSelect = document.getElementById('sector-select');
+sectorSelect.addEventListener('change', () => {
+    const selectedOptions = Array.from(sectorSelect.selectedOptions).map(option => option.value);
+    const selectedSectors = selectedOptions.includes('all') ? Object.keys(sectorData) : selectedOptions;
+    renderChart(selectedSectors);
+});
+
+// Initialize chart with all sectors
+renderChart(Object.keys(sectorData));
+</script>
 </body>
 </html>
