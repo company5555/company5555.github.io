@@ -127,7 +127,16 @@ const renderChart = (selectedSectors) => {
             },
             scales: {
                 x: { title: { display: false } },
-                y: { title: { display: false } }
+                y: {
+                    title: { display: false },
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 100000
+                    },
+                    grid: {
+                        borderDash: [5, 5]
+                    }
+                }
             }
         }
     });
